@@ -43,6 +43,12 @@ npm install
 
 O arquivo `.env` já está configurado com as chaves de API fornecidas.
 
+**IMPORTANTE:** Por padrão, a aplicação roda em **MODO DEMO** com dados simulados.
+
+Para usar os actors **reais do Apify** e obter dados verdadeiros do LinkedIn:
+- Veja o guia completo em: `APIFY_SETUP.md`
+- Execute: `./switch-mode.sh real` (ou edite `.env` e mude `USE_MOCK_DATA=false`)
+
 ### 4. Compilar TypeScript
 
 ```bash
@@ -145,6 +151,44 @@ npm run search         # CLI interativo
 npm run search:company # Buscar empresas
 npm run search:profile # Buscar perfis
 ```
+
+## Modos de Operação
+
+### 🎭 Modo DEMO (Padrão)
+Usa dados simulados para testes sem consumir créditos do Apify.
+
+```bash
+./switch-mode.sh demo
+npm run build
+npm run search:company -- --pais "Brasil" --segmento "Tecnologia"
+```
+
+**Vantagens:**
+- ✅ Gratuito
+- ✅ Rápido
+- ✅ Ideal para desenvolvimento
+- ✅ Testa toda a aplicação (CLI, API, Excel)
+
+### 🌐 Modo REAL
+Usa os actors reais do Apify para buscar dados verdadeiros do LinkedIn.
+
+```bash
+./switch-mode.sh real
+npm run build
+npm run search:company -- --pais "Brasil" --segmento "Tecnologia"
+```
+
+**Atenção:**
+- ⚠️ Consome créditos do Apify
+- ⚠️ Comece com `--max-results 10`
+- ⚠️ Veja custos em: https://console.apify.com/account/usage
+
+**Actors Configurados:**
+- LinkedIn Company Scraper: `od6RadQV98FOARtrp`
+- LinkedIn People Scraper: `2SyF0bVxmgGr8IVCZ`
+- LinkedIn Jobs Scraper: `BHzefUZlZRKWxkTck`
+
+Para mais detalhes, veja `APIFY_SETUP.md`
 
 ## Licença
 

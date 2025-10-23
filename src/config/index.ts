@@ -73,11 +73,11 @@ const config: Config = {
   // Logging
   logLevel: process.env.LOG_LEVEL || 'info',
 
-  // Apify Actors (IDs comuns de actors do Apify)
+  // Apify Actors (IDs corretos dos actors)
   apifyActors: {
-    linkedinCompanySearch: 'apify/linkedin-company-scraper',
-    linkedinPeopleSearch: 'apify/linkedin-profile-scraper',
-    linkedinJobSearch: 'apify/linkedin-jobs-scraper',
+    linkedinCompanySearch: 'od6RadQV98FOARtrp',  // LinkedIn Company Scraper
+    linkedinPeopleSearch: '2SyF0bVxmgGr8IVCZ',   // LinkedIn People Scraper
+    linkedinJobSearch: 'BHzefUZlZRKWxkTck',      // LinkedIn Jobs Scraper
   },
 
   // InfoSimples API
