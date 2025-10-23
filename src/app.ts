@@ -1,10 +1,14 @@
+// Carregar variáveis de ambiente PRIMEIRO
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express, { Express, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import config from './config';
-import logger, { logInfo, logError, stream } from './utils/logger';
+import logger, { logInfo, logError } from './utils/logger';
 
 // Importar rotas
 import companyRoutes from './routes/company';

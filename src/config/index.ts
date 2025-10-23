@@ -13,6 +13,7 @@ interface Config {
   // Server
   port: number;
   nodeEnv: string;
+  useMockData: boolean;
 
   // Database
   databaseUrl: string;
@@ -52,6 +53,7 @@ const config: Config = {
   // Server
   port: parseInt(process.env.PORT || '3000', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
+  useMockData: process.env.USE_MOCK_DATA === 'true',
 
   // Database
   databaseUrl: process.env.DATABASE_URL || 'sqlite:./data/searches.db',
@@ -109,7 +111,8 @@ function validateConfig(): void {
   }
 }
 
-// Validar ao carregar
-validateConfig();
+// Não validar ao carregar para permitir que dotenv seja configurado primeiro
+// validateConfig() será chamado manualmente quando necessário
 
 export default config;
+export { validateConfig };

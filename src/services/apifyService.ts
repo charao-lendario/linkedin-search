@@ -4,6 +4,7 @@ import { logInfo, logError, logApiCall } from '../utils/logger';
 import { Company, CompanySearchFilters } from '../models/Company';
 import { Profile, ProfileSearchFilters } from '../models/Profile';
 import { v4 as uuidv4 } from 'uuid';
+import mockDataService from './mockDataService';
 
 export class ApifyService {
   private client: ApifyClient;
@@ -21,6 +22,15 @@ export class ApifyService {
     const startTime = Date.now();
 
     try {
+      // Se modo demo ativado, retornar dados fake
+      if (config.useMockData) {
+        logInfo('🎭 MODO DEMO: Usando dados simulados', { filters, maxResults });
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Simular delay
+        const mockCompanies = mockDataService.generateMockCompanies(maxResults, filters);
+        logInfo('MODO DEMO: Empresas geradas', { total: mockCompanies.length });
+        return mockCompanies;
+      }
+
       logInfo('Iniciando busca de empresas no LinkedIn', { filters, maxResults });
 
       // Construir query de busca
@@ -62,6 +72,15 @@ export class ApifyService {
     const startTime = Date.now();
 
     try {
+      // Se modo demo ativado, retornar dados fake
+      if (config.useMockData) {
+        logInfo('🎭 MODO DEMO: Usando dados simulados', { filters, maxResults });
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Simular delay
+        const mockProfiles = mockDataService.generateMockProfiles(maxResults, filters);
+        logInfo('MODO DEMO: Perfis gerados', { total: mockProfiles.length });
+        return mockProfiles;
+      }
+
       logInfo('Iniciando busca de perfis no LinkedIn', { filters, maxResults });
 
       // Construir query de busca

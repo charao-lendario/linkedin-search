@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+// Carregar variáveis de ambiente PRIMEIRO
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { Command } from 'commander';
 import readline from 'readline';
 import { runCompanyCommand } from './commands/searchCompany';
